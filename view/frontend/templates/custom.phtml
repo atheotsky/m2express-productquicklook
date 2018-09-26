@@ -1,0 +1,21 @@
+<?php
+
+$productCollection = $block->getProductCollection();
+
+$sliderWrapper = '';
+
+foreach ($productCollection as $product){
+    //print_r($product->getData());
+?>
+    <div class="section">
+        <a href="<?php echo $product->getProductUrl(); ?>">
+            <?php echo $product->getName();?>
+        </a>
+        <i class="fa fa-chevron-down"></i>
+    </div>
+<?php
+}
+
+
+?>
+

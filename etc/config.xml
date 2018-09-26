@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <m2express_productquicklook>
+            <general>
+                <home_category>1</home_category>
+                <color_of_theme>blue</color_of_theme>
+                <style_of_theme>something</style_of_theme>
+            </general>
+        </m2express_productquicklook>
+    </default>
+</config>

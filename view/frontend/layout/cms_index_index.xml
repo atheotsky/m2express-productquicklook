@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="M2express_ProductQuickLook::css/custom.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="page.main.title" display="false"/>
+            <block class="M2express\ProductQuickLook\Block\CustomProduct" template="M2express_ProductQuickLook::custom.phtml" />
+        </referenceContainer>
+    </body>
+</page>
