@@ -1,21 +1,94 @@
 <?php
+/**
+ * Copyright © Magento2Express. All rights reserved.
+ * @author: <mailto:contact@magento2express.com>.
+ */
 
-$productCollection = $block->getProductCollection();
+// @codingStandardsIgnoreFile
 
-$sliderWrapper = '';
-
-foreach ($productCollection as $product){
-    //print_r($product->getData());
 ?>
-    <div class="section">
-        <a href="<?php echo $product->getProductUrl(); ?>">
-            <?php echo $product->getName();?>
-        </a>
-        <i class="fa fa-chevron-down"></i>
+
+<?php if (($_products = $block->getProductCollection()) && $_products->getSize()): ?>
+    <div class="block widget block-new-products-list">
+        <!--
+        <div class="block-title">
+            <strong><?= /* @escapeNotVerified */ __('New Products') ?></strong>
+        </div>
+        -->
+        <div class="block-content">
+            <?php $suffix = $block->getNameInLayout(); ?>
+            <?php $iterator = 1; ?>
+            <ol class="product-items" id="widget-new-products-<?= /* @escapeNotVerified */ $suffix ?>">
+                <?php foreach ($_products->getItems() as $_product): ?>
+
+                    <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="product-item new-content-box">' : '</li><li class="product-item new-content-box">' ?>
+                    <div class="product-item-info">
+                        <a class="product-item-photo manual-ajax" href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>"
+                           title="<?= /* @escapeNotVerified */ $block->stripTags($_product->getName(), null, true) ?>">
+                            <?= $block->getImage($_product, 'product_page_image_medium')->toHtml() ?>
+                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>"
+                                   title="<?= /* @escapeNotVerified */ $block->stripTags($_product->getName(), null, true) ?>)" class="product-item-link">
+                                    <?= /* @escapeNotVerified */ $this->helper('Magento\Catalog\Helper\Output')->productAttribute($_product, $_product->getName(), 'name') ?>
+                                </a>
+                            </strong>
+                            <?= /* @escapeNotVerified */ $block->getProductPriceHtml($_product, '-widget-new-' . $suffix) ?>
+                            <div class="product-item-actions">
+                                <div class="actions-primary">
+                                    <?php if ($_product->isSaleable()): ?>
+                                        <?php if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
+                                            <button type="button" title="<?= /* @escapeNotVerified */ __('Add to Cart') ?>"
+                                                    class="action tocart primary"
+                                                    data-mage-init='{"redirectUrl":{"url":"<?= /* @escapeNotVerified */ $block->getAddToCartUrl($_product) ?>"}}'>
+                                                <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                            </button>
+                                        <?php else: ?>
+                                            <?php
+                                            $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                            $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_product), ['product' => $_product->getEntityId()]);
+                                            ?>
+                                            <button type="button" title="<?= /* @escapeNotVerified */ __('Add to Cart') ?>"
+                                                    class="action tocart primary"
+                                                    data-post='<?= /* @escapeNotVerified */ $postData ?>'>
+                                                <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                            </button>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <?php if ($_product->getIsSalable()): ?>
+                                            <div class="stock available" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
+                                                <span><?= /* @escapeNotVerified */ __('In stock') ?></span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
+                                                <span><?= /* @escapeNotVerified */ __('Out of stock') ?></span>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                    <button type="button" class="btn-default success" title="">Add to compare</button>
+                                    <button type="button" class="btn-default" title="">Quick Look</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?= ($iterator == count($_products->getItems())+1) ? '</li>' : '' ?>
+                <?php endforeach; ?>
+            </ol>
+            <?= $block->getPagerHtml() ?>
+        </div>
     </div>
-<?php
-}
-
-
-?>
-
+<?php endif; ?>
+<script>
+    requirejs(['jquery', 'modal'],function($){
+        (function() {
+            $('.manual-ajax').click(function(event) {
+                event.preventDefault();
+                this.blur(); // Manually remove focus from clicked link.
+                $.get(this.href, function(html) {
+                    $(html).appendTo('body').modal();
+                });
+            });
+        })(jQuery);
+    });
+</script>

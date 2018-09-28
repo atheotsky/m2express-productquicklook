@@ -1,0 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+.section {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    font-size: 2em;
+    color: #fff;
+    box-sizing: border-box;
+    width: 100% !important;
+    position: relative;
+    float: left;
+    text-align: center;
+    height: 100vh;
+    line-height: 100vh;
+    background: #3498db;
+    border-bottom: 2px solid #FFFFFF;
+}
+.section i {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    color: #fff;
+    bottom: 5%;
+    left: 50%;
+    margin-left: -16px;
+}
+
+
+.new-content-box {
+    height:100%;
+    min-height:100%;/*for mozilla*/
+    background-color: aliceblue;
+    border-top: 5px solid #FFFFFF;
+    border-bottom: 5px solid #FFFFFF;
+    position: relative;
+}
+
+html>body .new-content-box {
+    height:auto;
+}
+
+.product-item-details {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

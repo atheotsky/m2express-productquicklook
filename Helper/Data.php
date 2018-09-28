@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: lamx710
- * Date: 9/26/18
- * Time: 09:03
+ * Copyright © Magento2Express. All rights reserved.
+ * @author: <mailto:contact@magento2express.com>.
  */
 
 namespace M2express\ProductQuickLook\Helper;
