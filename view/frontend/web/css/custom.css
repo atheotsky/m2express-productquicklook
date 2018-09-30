@@ -43,3 +43,38 @@ html>body .new-content-box {
     bottom: 20px;
     right: 20px;
 }
+
+.iframeWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+.iframeWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.m2express-quickview-close-btn {
+    display: none;
+    text-align: center;
+    line-height: 25px;
+    height: 25px;
+}
+
+.page-title-wrapper {
+    /* padding: 19% 0 30%; */
+    /* background-image: url(../images/bg-page-title.jpg); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    /* margin-bottom: 20px; */
+}
+
+.page-title-wrapper .page-title {
+    color: #000000 !important;
+}

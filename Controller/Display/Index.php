@@ -6,24 +6,36 @@
 
 namespace M2express\ProductQuickLook\Controller\Display;
 
-//use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\Json\Helper\Data;
+use Magento\Catalog\Model\ProductFactory;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
-/*
-    public function __construct(Context $context)
+    protected $jsonHelper;
+    protected $_productFactory;
+
+    public function __construct(Context $context, Data $jsonHelper, ProductFactory $productFactory)
     {
+        $this->jsonHelper = $jsonHelper;
+        $this->_productFactory = $productFactory;
         parent::__construct($context);
     }
-*/
+
     public function execute()
     {
-        echo "json";
+        $product = $this->_productFactory->create()->load($this->getProductId());
+        $jsonResult = ["id"=>0,"Name"=>"hello"];
+        echo $this->jsonHelper->jsonEncode($product);
     }
 
-    public function getNext()
+    public function getProductId()
     {
-        $name = $this->getRequest()->getParam('name');
-        return $name;
+        $productId = (int) $this->getRequest()->getParam('id');
+        if (!$productId) {
+            return 0;
+        } else {
+            return $productId;
+        }
     }
 }

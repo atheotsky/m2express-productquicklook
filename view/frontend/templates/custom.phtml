@@ -66,8 +66,7 @@
                                             </div>
                                         <?php endif; ?>
                                     <?php endif; ?>
-                                    <button type="button" class="btn-default success" title="">Add to compare</button>
-                                    <button type="button" class="btn-default" title="">Quick Look</button>
+                                    <button class="open-quick-look-modal" data-pid="<?= /* @escapeNotVerified */ $_product->getEntityId() ?>">Quick Look</button>
                                 </div>
                             </div>
                         </div>
@@ -79,16 +78,41 @@
         </div>
     </div>
 <?php endif; ?>
+
+<div id="js-quicklook-popup">
+    <iframe style="margin-top: 2vh" id="quicklook-iframe" width="100%" height="500px" frameborder="0" src=""></iframe>
+</div>
 <script>
-    requirejs(['jquery', 'modal'],function($){
-        (function() {
-            $('.manual-ajax').click(function(event) {
-                event.preventDefault();
-                this.blur(); // Manually remove focus from clicked link.
-                $.get(this.href, function(html) {
-                    $(html).appendTo('body').modal();
+    requirejs([
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function($, modal) {
+            $(document).ready(function() {
+                var options = {
+                    type: 'popup',
+                    responsive: true,
+                    innerScroll: true,
+                    modalClass: 'mybuttont_modal',
+                    title: 'Quick Look',
+                    buttons: [{
+                        text: 'close',
+                        class: '.m2express-quickview-close-btn',
+                        click: function() {
+                            this.closeModal();
+                        } //handler on button click
+                    }]
+                };
+
+                var popup = modal(options, $('#js-quicklook-popup'));
+                $(".open-quick-look-modal").on('click',function(){
+                    var productId = $(this).data('pid');
+                    //$("#ql-product-name").html('test' + productId);
+                    $("#quicklook-iframe").attr('src','/quicklook/display/view/id/' + productId);
+                    $("#js-quicklook-popup").modal("openModal");
                 });
+
             });
-        })(jQuery);
-    });
+        }
+    );
 </script>
