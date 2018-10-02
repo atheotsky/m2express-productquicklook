@@ -40,4 +40,14 @@ class Data extends AbstractHelper
             $scope
         );
     }
+
+    public function getEffectTheme($scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT)
+    {
+        return $this->scopeConfig->getValue('m2express_productquicklook/general/effect_of_style', $scope);
+    }
+
+    public function getCartPosition($scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT)
+    {
+        return $this->scopeConfig->getValue('m2express_productquicklook/general/cart_position', $scope);
+    }
 }

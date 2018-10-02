@@ -11,17 +11,30 @@
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General Configuration</label>
                 <comment>This is configuration page.</comment>
-                <field id="home_category" translate="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="home_category" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
                     <label>Home Category</label>
-                    <comment>Category will be listed on home page.</comment>
+                    <comment/>
+                    <source_model>M2express\ProductQuickLook\Model\Config\Source\CategoryList</source_model>
                 </field>
-                <field id="color_of_theme" translate="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="color_of_theme" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
                     <label>Theme color</label>
-                    <comment>Pick a color for this theme.</comment>
+                    <comment/>
+                    <source_model>M2express\ProductQuickLook\Model\Config\Source\ColorOfTheme</source_model>
                 </field>
-                <field id="style_of_theme" translate="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Theme color</label>
-                    <comment>Pick a color for this theme.</comment>
+                <field id="style_of_theme" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Theme style</label>
+                    <comment/>
+                    <source_model>M2express\ProductQuickLook\Model\Config\Source\StyleOfTheme</source_model>
+                </field>
+                <field id="effect_of_style" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Style effect</label>
+                    <comment/>
+                    <source_model>M2express\ProductQuickLook\Model\Config\Source\EffectOfStyle</source_model>
+                </field>
+                <field id="cart_position" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Cart position</label>
+                    <comment/>
+                    <source_model>M2express\ProductQuickLook\Model\Config\Source\CartPosition</source_model>
                 </field>
             </group>
         </section>

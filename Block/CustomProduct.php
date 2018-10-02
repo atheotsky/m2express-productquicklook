@@ -50,4 +50,9 @@ class CustomProduct extends Template
             ->setAttributes($attributes)
             ->create();
     }
+
+    public function getModuleConfig()
+    {
+        return $this->helper;
+    }
 }

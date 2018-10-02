@@ -5,7 +5,9 @@
             <general>
                 <home_category>1</home_category>
                 <color_of_theme>blue</color_of_theme>
-                <style_of_theme>something</style_of_theme>
+                <style_of_theme>horizontal</style_of_theme>
+                <effect_of_style>parallax</effect_of_style>
+                <cart_position>right</cart_position>
             </general>
         </m2express_productquicklook>
     </default>

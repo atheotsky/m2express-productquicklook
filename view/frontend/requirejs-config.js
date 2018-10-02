@@ -1,12 +1,11 @@
 var config = {
-    map: {
-        '*': {
-            modal: 'M2express_ProductQuickLook/js/jquery.modal.min'
-        }
+    paths: {
+        'onepage_scroll': 'M2express_ProductQuickLook/js/jquery.onepage-scroll',
     },
     shim: {
-        modal: {
-            deps: ['jquery']
+        'onepage_scroll': {
+            deps: ['jquery'],
+            exports: 'onepage_scroll'
         }
     }
 };
