@@ -16,7 +16,7 @@
     <?php $iterator = 0; ?>
     <?php foreach ($_products->getItems() as $_product): ?>
         <?php $iterator++; ?>
-        <?= /* @escapeNotVerified */ ($themeStyle=='horizontal') ? '<section class="custom-product-container">' : '<section class="custom-product-container-reverse">' ?>
+        <?= /* @escapeNotVerified */ ($themeStyle=='horizontal') ? '<div class="custom-product-container">' : '<div class="custom-product-container-reverse">' ?>
             <!-- Product Images -->
             <?= /* @escapeNotVerified */ ($themeStyle=='horizontal' && $iterator%2==0) ? '<div class="left-column">' : '<div class="left-column-reverse">' ?>
                 <?= $block->getImage($_product, 'product_page_image_medium')->toHtml() ?>
@@ -35,7 +35,7 @@
                     <a href="javascript:void(0);" class="cart-btn open-quick-look-modal" data-pid="<?= /* @escapeNotVerified */ $_product->getEntityId() ?>">Quick Look</a>
                 </div>
             </div>
-        </section>
+        </div>
     <?php endforeach; ?>
 <?php endif; ?>
 </div>
@@ -49,24 +49,25 @@
             'onepage_scroll'
         ],
         function($, modal) {
-        /*
-            $(function(){
-                $(".main").onepage_scroll({
-                    sectionContainer: "section",
-                    responsiveFallback: 600,
-                    loop: true,
-                    direction: "horizontal"
-                });
-            });
-*/
-            $(document).ready(function() {
-                $(".custom-main-container").onepage_scroll({
-                    sectionContainer: "section",
-                    responsiveFallback: 600,
-                    loop: true,
-                    direction: "horizontal"
-                });
 
+            $(document).ready(function() {
+                if($("#custom-main-container").length) {
+                    $("#custom-main-container").onepage_scroll({
+                        sectionContainer: ".custom-product-container",
+                        responsiveFallback: 600,
+                        loop: true,
+                        direction: "horizontal"
+                    });
+                }
+
+                if($("#custom-main-container-reverse").length) {
+                    $("#custom-main-container-reverse").onepage_scroll({
+                        sectionContainer: ".custom-product-container-reverse",
+                        responsiveFallback: 600,
+                        loop: true,
+                        direction: "vertical"
+                    });
+                }
                 var options = {
                     type: 'popup',
                     responsive: true,
