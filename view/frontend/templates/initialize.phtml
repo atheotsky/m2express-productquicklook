@@ -1,0 +1,19 @@
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "quicklook": {
+                        "component": "M2express_ProductQuickLook/js/quicklook"
+                    }
+                 }
+            }
+        }
+    }
+</script>
+<script>
+    window.mediaPath = '<?=$block->getMediaPath();?>';
+</script>
+<div data-bind="scope: 'quicklook'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
