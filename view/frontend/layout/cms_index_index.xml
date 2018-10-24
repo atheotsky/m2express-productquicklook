@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <css src="M2express_ProductQuickLook::css/custom.css"/>
-        <css src="M2express_ProductQuickLook::css/onepage-scroll.css"/>
-    </head>
     <body>
         <referenceContainer name="content">
             <referenceBlock name="page.main.title" display="false"/>
-            <block class="M2express\ProductQuickLook\Block\CustomProduct" template="M2express_ProductQuickLook::custom_two.phtml" />
+            <referenceBlock name="home.product.addto">
+                <block class="M2express\ProductQuickLook\Block\QuickLook" as="quicklook"
+                       name="product.quicklook"
+                       template="M2express_ProductQuickLook::quicklook.phtml" />
+            </referenceBlock>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="M2express\ProductQuickLook\Block\Initialize" name="product.quicklook.initialize" template="M2express_ProductQuickLook::initialize.phtml"/>
         </referenceContainer>
     </body>
 </page>

@@ -25,7 +25,6 @@ class Index extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $product = $this->_productFactory->create()->load($this->getProductId());
-        $jsonResult = ["id"=>0,"Name"=>"hello"];
         echo $this->jsonHelper->jsonEncode($product);
     }
 
