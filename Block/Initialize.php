@@ -24,7 +24,7 @@ class Initialize extends \Magento\Framework\View\Element\Template
     {
         $storeManager = $this->_objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
         $currentStore = $storeManager->getStore();
-        $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+        $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'catalog/product';
         return $mediaUrl;
     }
 }

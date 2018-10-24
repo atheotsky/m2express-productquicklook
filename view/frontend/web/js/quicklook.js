@@ -6,6 +6,7 @@ define(['jquery', 'ko', 'Magento_Ui/js/modal/modal', 'uiComponent', 'domReady!']
             justFun: 'Hello',
             template: 'M2express_ProductQuickLook/quicklook'
         },
+        imagePath : ko.observable(''),
         pname : ko.observable(''),
         price : ko.observable(''),
         sku : ko.observable(''),
@@ -29,6 +30,9 @@ define(['jquery', 'ko', 'Magento_Ui/js/modal/modal', 'uiComponent', 'domReady!']
                         for (var i=0; i < data.custom_attributes.length; i++) {
                             if (data.custom_attributes[i].attribute_code === "description") {
                                 self.description(data.custom_attributes[i].value);
+                            }
+                            if (data.custom_attributes[i].attribute_code === "image") {
+                                self.imagePath(window.mediaPath + data.custom_attributes[i].value);
                             }
                         }
 
