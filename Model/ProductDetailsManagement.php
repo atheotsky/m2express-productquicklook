@@ -41,6 +41,7 @@ class ProductDetailsManagement implements ProductDetailsManagementInterface
                         ->getUrl(), 'medium_image_url' =>
                     $this->_imageHelper->init($product, 'product_page_image_medium_no_frame')
                         ->setImageFile($image->getFile())
+                        ->resize(500)
                         ->getUrl(), 'large_image_url' =>
                     $this->_imageHelper->init($product, 'product_page_image_large_no_frame')
                         ->setImageFile($image->getFile())

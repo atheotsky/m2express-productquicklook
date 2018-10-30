@@ -1,4 +1,4 @@
-define(['jquery', 'ko', 'Magento_Ui/js/modal/modal', 'uiComponent', 'domReady!'], function($, ko, modal, Component) {
+define(['jquery', 'ko', 'Magento_Ui/js/modal/modal', 'uiComponent', 'mage/gallery/gallery', 'domReady!'], function($, ko, modal, Component, Gallery) {
     'use strict';
     var self;
     return Component.extend({
@@ -32,8 +32,45 @@ define(['jquery', 'ko', 'Magento_Ui/js/modal/modal', 'uiComponent', 'domReady!']
                         self.sku(returnData.response.sku);
                         self.description(returnData.response.description);
                         var productImages = [];
+                        var dataJson = [];
                         $.each(returnData.gallery, function(index) {
                             productImages.push({ data: returnData.gallery[index]['small_image_url']});
+                            var obj = {
+                                img: returnData.gallery[index]['medium_image_url'],
+                                thumb: returnData.gallery[index]['small_image_url'],
+                                isMain: (index == 0) ? true : false
+                            };
+                            dataJson.push(obj);
+                        });
+
+                        $('.gallery-placeholder').each(function (index, element) {
+                            console.log(dataJson);
+                            Gallery({
+                                options: {
+                                    "nav": "thumbs",
+                                    "loop" : true,
+                                    "arrows" : true,
+                                    "width": 500,
+                                    "height" : 500,
+                                    "transition" : "slide",
+                                    "showCaption": false,
+                                    "transitionduration": 5000,
+                                    "navarrows": true,
+                                    "navtype": "thumbs",
+                                    "navdir" : "horizontal"
+                                },
+                                data: dataJson,
+                                fullscreen: {
+                                    "nav": "thumbs",
+                                    "loop": true,
+                                    "navdir": "horizontal",
+                                    "arrows": true,
+                                    "showCaption": false,
+                                    "transitionduration": 5000,
+                                    "transition": "slide"
+                                },
+                                breakpoints: {}
+                            }, element);
                         });
 
                         self.productImgList(productImages);

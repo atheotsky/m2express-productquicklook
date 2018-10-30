@@ -9,6 +9,7 @@ interface ProductDetailsManagementInterface
     /**
      * GET for productDetails api
      * @param string $pid
+     * @return \ArrayObject
      */
     public function getProductDetails($pid);
 }

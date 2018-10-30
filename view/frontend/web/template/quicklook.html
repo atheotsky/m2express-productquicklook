@@ -3,13 +3,7 @@
 
     </div>
     <div class="quicklook-right">
-        <div id="quicklook-img"><img data-bind="attr:{src: imagePath}" />
-            <div class="img-carousel">
-                <!-- ko foreach: productImgList -->
-                <div class="item"><img data-bind="attr:{src: data}" class="small-img-selector" /></div>
-                <!-- /ko -->
-            </div>
-        </div>
+        <div class="gallery-placeholder" data-gallery-role="gallery-placeholder"></div>
         <div id="quicklook-name"><span data-bind="text: pname()"></span></div>
         <div id="quicklook-price"><span data-bind="text: price"></span></div>
         <div id="quicklook-sku"><span data-bind="text: sku"></span></div>
